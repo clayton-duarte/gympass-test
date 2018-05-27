@@ -1,20 +1,17 @@
-import React, { PureComponent as Component } from 'react';
+import React, { PureComponent as Component, Fragment } from 'react';
 import { func, objectOf, any } from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Router from 'next/router';
 
 import Page from '../src/components/pageWrapper';
+import Input from '../src/components/input';
 import { getRepos } from '../src/actions';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.onSubmit = (e) => {
-      e.preventDefault();
-      this.props.getRepos(this.state.user);
-    };
   }
 
   componentDidMount() {
@@ -23,13 +20,11 @@ class Home extends Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-        <fieldset>
-          <span>Informe um usuário: </span>
-          <input value={this.state.user} onChange={e => this.setState({ user: e.target.value })} />
-          <button onClick={this.onSubmit}>GET</button>
-        </fieldset>
-      </form>
+      <Fragment>
+        <Input value={this.state.user} onChange={e => this.setState({ user: e.target.value })}>
+          <button onClick={() => this.props.getRepos(this.state.user)}>GET</button>
+        </Input>
+      </Fragment>
     );
   }
 }
