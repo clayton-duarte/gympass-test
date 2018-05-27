@@ -5,20 +5,19 @@ import { connect } from 'react-redux';
 import Router from 'next/router';
 
 import Page from '../src/components/pageWrapper';
-import { getRepos, getCommits } from '../src/actions';
+import { getCommits } from '../src/actions';
 
 class Repos extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.getCommits = (repo) => {
-      this.props.getCommits(repo);
-      Router.push(`/commits?${repo}`);
-    };
+    this.setUserInfo = query => this.setState({ user: query.split('?')[1] });
+    this.getCommits = repo => this.props.getCommits(repo);
   }
 
   componentDidMount() {
-    if (this.props.store.user) this.props.getRepos(this.props.store.user);
+    const query = window.location.search;
+    if (query) this.setUserInfo(window.location.search);
     else Router.push('/');
   }
 
@@ -26,17 +25,19 @@ class Repos extends Component {
     if (this.props.store.repos) {
       return (
         <Fragment>
-        loaded {this.props.store.user} repos!
+        loaded {this.state.user} repos!
           <br />
           {
           this.props.store.repos.map(repo => (
-            <p><button onClick={() => this.getCommits(repo.name)}>{repo.name}</button></p>
+            <p key={Math.random()}>
+              <button onClick={() => this.getCommits(repo.name)}>{repo.name}</button>
+            </p>
           ))
         }
         </Fragment>
       );
     }
-    return <Fragment>loading {this.props.store.user} repos...</Fragment>;
+    return <Fragment>loading {this.state.user} repos...</Fragment>;
   }
 }
 
@@ -45,8 +46,7 @@ Repos.title = 'GitHub - Repositórios';
 Repos.propTypes = {
   store: objectOf(any).isRequired,
   getCommits: func.isRequired,
-  getRepos: func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({ getRepos, getCommits }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getCommits }, dispatch);
 export default Page(connect(state => state, mapDispatchToProps)(Repos));

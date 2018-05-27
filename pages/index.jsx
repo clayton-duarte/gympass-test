@@ -5,21 +5,29 @@ import { connect } from 'react-redux';
 import Router from 'next/router';
 
 import Page from '../src/components/pageWrapper';
-import { saveUser } from '../src/actions';
+import { getRepos } from '../src/actions';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.onSubmit = () => this.props.saveUser(this.state.user);
+    this.onSubmit = (e) => {
+      e.preventDefault();
+      this.props.getRepos(this.state.user);
+    };
   }
-  render() {
+
+  componentDidMount() {
     if (this.props.store.user) Router.push('/repos');
+  }
+
+  render() {
     return (
       <form onSubmit={this.onSubmit}>
         <fieldset>
-          <span htmlFor="user">Informe um usuário: </span>
-          <input id="user" value={this.state.user} onChange={e => this.setState({ user: e.target.value })} />
+          <span>Informe um usuário: </span>
+          <input value={this.state.user} onChange={e => this.setState({ user: e.target.value })} />
+          <button onClick={this.onSubmit}>GET</button>
         </fieldset>
       </form>
     );
@@ -30,8 +38,8 @@ Home.title = 'GitHub - Busca de Repositórios';
 
 Home.propTypes = {
   store: objectOf(any).isRequired,
-  saveUser: func.isRequired,
+  getRepos: func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({ saveUser }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getRepos }, dispatch);
 export default Page(connect(state => state, mapDispatchToProps)(Home));

@@ -3,6 +3,9 @@
         "next/babel"
     ],
     "plugins": [
-        ["styled-components", { "ssr": true, "displayName": false, "preprocess": false }]
+        [
+            "styled-components",
+            { "ssr": true, "displayName": false, "preprocess": false }
+        ]
     ]
 }

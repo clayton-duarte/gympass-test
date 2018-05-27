@@ -26,10 +26,10 @@ class Commits extends Component {
         loaded {this.state.repo} commits!
           <br />
           {
-          this.props.store.commits[this.state.repo].map(commit => (
-            <p>{commit.sha}</p>
-          ))
-        }
+            this.props.store.commits[this.state.repo].map(commit => (
+              <p key={Math.random()}>{commit.sha}</p>
+            ))
+          }
         </Fragment>
       );
     }
@@ -43,5 +43,5 @@ Commits.propTypes = {
   store: objectOf(any).isRequired,
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({ }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 export default Page(connect(state => state, mapDispatchToProps)(Commits));
