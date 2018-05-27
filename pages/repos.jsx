@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import Page from '../src/components/pageWrapper';
 import Loader from '../src/components/loader';
+import Header from '../src/components/header';
 import { getCommits } from '../src/actions';
 
 class Repos extends Component {
@@ -18,8 +19,7 @@ class Repos extends Component {
     if (this.props.store.repos) {
       return (
         <Fragment>
-        loaded {this.props.store.user} repos!
-          <br />
+          <Header>{this.props.store.user}</Header>
           {
           this.props.store.repos.map(repo => (
             <p key={Math.random()}>
