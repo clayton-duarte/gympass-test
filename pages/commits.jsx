@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Router from 'next/router';
 
 import Page from '../src/components/pageWrapper';
+import Loader from '../src/components/loader';
 
 class Commits extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class Commits extends Component {
   }
 
   render() {
-    if (this.props.store.commits) {
+    if (this.props.store.commits && this.state.repo) {
       return (
         <Fragment>
         loaded {this.state.repo} commits!
@@ -33,7 +34,7 @@ class Commits extends Component {
         </Fragment>
       );
     }
-    return <Fragment>loading {this.state.repo} commits...</Fragment>;
+    return <Loader />;
   }
 }
 

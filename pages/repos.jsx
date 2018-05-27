@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Router from 'next/router';
 
 import Page from '../src/components/pageWrapper';
+import Loader from '../src/components/loader';
 import { getCommits } from '../src/actions';
 
 class Repos extends Component {
@@ -37,7 +38,7 @@ class Repos extends Component {
         </Fragment>
       );
     }
-    return <Fragment>loading {this.state.user} repos...</Fragment>;
+    return <Loader />;
   }
 }
 

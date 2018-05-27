@@ -1,10 +1,10 @@
 import React, { PureComponent as Component, Fragment } from 'react';
-import { func, objectOf, any } from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Router from 'next/router';
+import { func } from 'prop-types';
 
 import Page from '../src/components/pageWrapper';
+import Button from '../src/components/button';
 import Input from '../src/components/input';
 import { getRepos } from '../src/actions';
 
@@ -14,15 +14,11 @@ class Home extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    if (this.props.store.user) Router.push('/repos');
-  }
-
   render() {
     return (
       <Fragment>
         <Input value={this.state.user} onChange={e => this.setState({ user: e.target.value })}>
-          <button onClick={() => this.props.getRepos(this.state.user)}>GET</button>
+          <Button onClick={() => this.props.getRepos(this.state.user)} />
         </Input>
       </Fragment>
     );
@@ -32,7 +28,6 @@ class Home extends Component {
 Home.title = 'GitHub - Busca de Repositórios';
 
 Home.propTypes = {
-  store: objectOf(any).isRequired,
   getRepos: func.isRequired,
 };
 
