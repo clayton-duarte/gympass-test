@@ -5,7 +5,7 @@ export const GET_REPOS = 'GET_REPOS';
 export const GET_COMMITS = 'GET_COMMITS';
 
 export const getRepos = user => async (dispatch) => {
-  Router.push(`/repos?${user}`);
+  Router.push('/repos');
   Axios.get(`https://api.github.com/users/${user}/repos`)
     .then((res) => {
       const data = {
@@ -21,7 +21,7 @@ export const getRepos = user => async (dispatch) => {
 };
 
 export const getCommits = repo => async (dispatch, getState) => {
-  Router.push(`/commits?${repo}`);
+  Router.push('/commits');
   const { user } = getState().store;
   const commits = {};
   Axios.get(`https://api.github.com/repos/${user}/${repo}/commits`)
@@ -29,7 +29,10 @@ export const getCommits = repo => async (dispatch, getState) => {
       commits[repo] = res.data;
       dispatch({
         type: GET_COMMITS,
-        payload: commits,
+        payload: {
+          commits,
+          repo,
+        },
       });
     })
     .catch(err => console.log(err));

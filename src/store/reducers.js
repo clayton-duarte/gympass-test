@@ -8,7 +8,7 @@ const store = (state = {}, action) => {
     case GET_REPOS:
       return { ...state, repos: action.payload.repos, user: action.payload.user };
     case GET_COMMITS:
-      return { ...state, commits: action.payload };
+      return { ...state, commits: action.payload.commits, repo: action.payload.repo };
     default:
       return state;
   }
