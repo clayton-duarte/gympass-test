@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 import Page from '../src/components/pageWrapper';
 import Loader from '../src/components/loader';
+import Header from '../src/components/header';
+import Card from '../src/components/card';
 
 class Commits extends Component {
   constructor(props) {
@@ -16,11 +18,11 @@ class Commits extends Component {
     if (this.props.store.repo) {
       return (
         <Fragment>
-        loaded {this.props.store.repo} commits!
+          <Header>{this.props.store.repo}</Header>
           <br />
           {
             this.props.store.commits[this.props.store.repo].map(commit => (
-              <p key={Math.random()}>{commit.sha}</p>
+              <Card key={Math.random()}>{commit.sha}</Card>
             ))
           }
         </Fragment>

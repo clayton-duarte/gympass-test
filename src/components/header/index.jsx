@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { node } from 'prop-types';
+import Router from 'next/router';
 import React from 'react';
 
 const StyledHeader = styled.header`
@@ -15,12 +17,29 @@ left: 0;
 top:0;
 `;
 
+const BackButton = styled.button`
+position: absolute;
+font-size: 1rem;
+margin: 0 .5rem;
+color: #fff;
+left: 0;
+`;
+
 const Wrapper = styled.div`
 padding-bottom: 3rem;
 `;
 
-export default props => (
+const Header = props => (
   <Wrapper>
-    <StyledHeader {...props} />
+    <StyledHeader {...props}>
+      <BackButton onClick={() => Router.push('/')}>&larr;</BackButton>
+      {props.children}
+    </StyledHeader>
   </Wrapper>
 );
+
+Header.propTypes = {
+  children: node.isRequired,
+};
+
+export default Header;

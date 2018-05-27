@@ -4,8 +4,8 @@ import React from 'react';
 const StyledButton = styled.button`
 box-shadow: 0 0 5px rgba(0,0,0,0.2);
 text-transform: uppercase;
-background: #909090;
 font-weight: bold;
+background: #333;
 font-size: .8rem;
 padding: .25rem;
 color: white;

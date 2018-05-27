@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Page from '../src/components/pageWrapper';
 import Loader from '../src/components/loader';
 import Header from '../src/components/header';
+import Card from '../src/components/card';
 import { getCommits } from '../src/actions';
 
 class Repos extends Component {
@@ -22,9 +23,7 @@ class Repos extends Component {
           <Header>{this.props.store.user}</Header>
           {
           this.props.store.repos.map(repo => (
-            <p key={Math.random()}>
-              <button onClick={() => this.getCommits(repo.name)}>{repo.name}</button>
-            </p>
+            <Card key={Math.random()} onClick={() => this.getCommits(repo.name)}>{repo.name}</Card>
           ))
         }
         </Fragment>
