@@ -15,18 +15,27 @@ color: white;
 width: 100%;
 left: 0;
 top:0;
+@media only screen and (min-width: 1024px) {
+  height: 100vh;
+  width: 30%;
+}
 `;
 
 const BackButton = styled.button`
+background: transparent;
 position: absolute;
 font-size: 1rem;
 margin: 0 .5rem;
 color: #fff;
+border: 0;
 left: 0;
 `;
 
 const Wrapper = styled.div`
 padding-bottom: 3rem;
+@media only screen and (min-width: 1024px) {
+padding-bottom: 0;  
+}
 `;
 
 const Header = props => (

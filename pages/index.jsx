@@ -20,6 +20,9 @@ class Home extends Component {
         <Input value={this.state.user} onChange={e => this.setState({ user: e.target.value })}>
           <Button onClick={() => this.props.getRepos(this.state.user)} />
         </Input>
+        <ol>Exemplos
+          <li><button onClick={() => this.props.getRepos('clayton-duarte')}>clayton-duarte</button></li>
+        </ol>
       </Fragment>
     );
   }

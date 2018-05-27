@@ -11,6 +11,10 @@ margin: .5rem 0;
 padding: .5rem;
 color: #222;
 width: 100%;
+@media only screen and (min-width: 1024px) {
+  margin-left: 30%;
+  width: 70%;
+}
 `;
 
 export default props => (

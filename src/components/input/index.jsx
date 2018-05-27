@@ -8,6 +8,14 @@ position: relative;
 background: #eee;
 margin: .5rem;
 padding: 1rem;
+@media only screen and (min-width: 1024px) {
+  input {
+    max-width: 80%;
+  }
+  button {
+    max-width: 20%;
+  }
+}
 `;
 
 const StyledInput = styled.input`

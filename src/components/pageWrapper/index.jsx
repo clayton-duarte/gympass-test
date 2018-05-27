@@ -12,7 +12,7 @@ min-height: 100vh;
 background: #666;
 font-size: 16px;
 padding: .5rem;
-color: #222;
+color: #fff;
 `;
 
 export default Page => (
